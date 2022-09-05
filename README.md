@@ -182,9 +182,17 @@ The rest of your configuration will remain.
 
 >`New "Divine Protection" feature`
 
+### 1.6
+
+>`Changed layout for brown mold and crumbspore (Littleevo)`
+>
+>`Skip harvesting young new seed, if it stands in place of something else (Littleevo)`
+>
+>`Immortal seeds are not counted for soil rotation`
+
 ## Issues
 
-If you have any issues, you can either create an issue in this git repo, or ping Chakaa on [Reddit](https://old.reddit.com/r/CookieClicker/comments/phxdge/garden_helper_for_steam_version/)
+If you have any issues, you can either create an issue in this git repo, or add a comment in Steam (https://steamcommunity.com/sharedfiles/filedetails/?id=2686171273&tscn=1662138072)
 
 ## FAQ
 
