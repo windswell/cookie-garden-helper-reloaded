@@ -189,6 +189,8 @@ The rest of your configuration will remain.
 >`Skip harvesting young new seed, if it stands in place of something else (Littleevo)`
 >
 >`Immortal seeds are not counted for soil rotation`
+>
+>1.6.1: `More optimal seed layouts for Shriekbulb, Elderdaisy, JQB, GC (erbkaiser)`
 
 ## Issues
 
