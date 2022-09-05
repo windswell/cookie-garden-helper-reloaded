@@ -654,6 +654,49 @@ Game.registerMod("cookiegardenhelperreloaded",{
 			[X,X,X,X,X,X],
 		];
 	},
+	availablePlots:function() {
+		var l = Game.Objects['Farm'].level
+		if(l==1){
+			return [2,2,3,3];
+		}else if(l==2){
+			return [2,2,4,3];
+		}else if(l==3){
+			return [2,2,4,4];
+		}else if(l==4){
+			return [1,2,4,4];
+		}else if(l==5){
+			return [1,1,4,4];
+		}else if(l==6){
+			return [1,1,5,4];
+		}else if(l==7){
+			return [2,2,5,5];
+		}else if(l==8){
+			return [0,1,5,5];
+		}
+		return [0,0,5,5];
+	},
+	allPlots:function(parents) {
+		var plots = this.availablePlots();
+		var p1 = parents[0]+1;
+		var X = [0,0];
+		var Y = [p1,0];
+
+		var outPlot= [
+			[X,X,X,X,X,X],
+			[X,X,X,X,X,X],
+			[X,X,X,X,X,X],
+			[X,X,X,X,X,X],
+			[X,X,X,X,X,X],
+			[X,X,X,X,X,X]
+		];
+		for(var y=plots[1];y<=plots[3];y++){
+			for(var x=plots[0];x<=plots[2];x++){
+				outPlot[y][x]=Y;
+			}
+		}
+		return outPlot;
+
+	},
 	horizontalPlots:function(parents) {
 		var l = Game.Objects['Farm'].level
 		var p1 = parents[0]+1
@@ -853,6 +896,10 @@ Game.registerMod("cookiegardenhelperreloaded",{
 			}
 			return this.emptyPlot();
 		}
+		//BrownMold && Crumbspore : Filled plots
+		if(seedId==13 || seedId==24){
+			return this.allPlots(m);
+		}
 		//Shriekbulb && Everdaisy : Horizontal Lines
 		if((seedId==31 && l>=3) || seedId==33){
 			return this.horizontalPlots(m);
@@ -911,6 +958,8 @@ Game.registerMod("cookiegardenhelperreloaded",{
 				for (let y=0; y<6; y++) {
 					if(!this.tileIsEmpty(x, y)){
 						let tile = this.getTile(x, y);
+						if(this.getPlant(tile.seedId).immortal)
+							continue;
 						let stage = this.getPlantStage(tile);
 						if(stage=='young'){
 							young++;
@@ -1009,7 +1058,7 @@ Game.registerMod("cookiegardenhelperreloaded",{
 		if(this.config.savedPlot.length>0){
 			let [seedId, age] = this.config.savedPlot[y][x];
 			seedId--;
-			if ( this.config.autoHarvestCleanGarden && ((plant.unlocked && seedId == -1) || (seedId > -1 && seedId != plant.id)) ) {
+			if ( this.config.autoHarvestCleanGarden && ((plant.unlocked && seedId == -1) || (seedId > -1 && seedId != plant.id && plant.unlocked)) ) {
 				this.harvest(x, y);
 			}
 		}
